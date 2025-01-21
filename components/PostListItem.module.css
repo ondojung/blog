@@ -1,0 +1,12 @@
+.PostListBlock{
+    width: 35rem;
+    margin: 0 auto;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.2rem solid black;
+    margin-top: 1rem;
+}
+.PostListTitle{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
