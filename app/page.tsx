@@ -1,5 +1,5 @@
 "use client"
-import Image from "next/image";
+//import Image from "next/image";
 import PostListItem from '../components/PostListItem'
 import ProfileBlock from '../components/ProfileBlock'
 import MenuIcon from '../public/img/menu.svg'

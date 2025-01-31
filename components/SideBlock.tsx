@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import styles from './SideBlock.module.css'
 import VisitorCount from './widget/VisitorsCount'
@@ -13,7 +14,17 @@ const category=[
         {id:7,color:'blue',name:'Python'},
         {id:8,color:'purple',name:'Kotlin'},
     ]
-export default function SideBlock({menuOpen,setMenuOpen}){
+
+
+interface SideBlockProps {
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function SideBlock({
+    menuOpen,
+    setMenuOpen
+}:SideBlockProps){
     return(
         <>
         <div className={menuOpen?styles.sideblockBg:styles.closeMenuBg} onClick={()=>setMenuOpen(false)}>
@@ -27,7 +38,7 @@ export default function SideBlock({menuOpen,setMenuOpen}){
                        height={150}
                        className={styles.avatarImg}/>
         </div>
-        <div className={styles.blogTitle}>EVELIF's LOG</div>
+        <div className={styles.blogTitle}>EVELIF&apos;s LOG</div>
         
         <MusicWidget/>
         <VisitorCount/>

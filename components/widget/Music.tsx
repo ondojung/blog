@@ -5,13 +5,15 @@ import PlayIcon from '../../public/icons/play_icon.svg'
 import PauseIcon from '../../public/icons/pause_icon.svg';
 import NextIcon from '../../public/icons/next_icon.svg';
 import ColorThief from 'colorthief';
-import YouTube from 'react-youtube';
+import YouTube,{YouTubePlayer} from 'react-youtube';
 
 type MusicState = {
+  idx:number;
+  id:string;
   title: string;
   artist: string;
   thumb: string;
-  status: 'playing' | 'paused';
+  status: boolean;
 };
 
 const playList = [
@@ -28,25 +30,31 @@ const playList = [
         title:'가까운 듯 먼 그대여', 
         artist:'카더가든',
         thumb:'/music/2VkWaOOF4Rc.jpg'
+    },{
+        idx:2,
+        id:'r-el8_35fU8',
+        title:'Heaven',
+        artist:'에일리(Ailee)',
+        thumb:'/music/r-el8_35fU8.jpg'
     }]
 
 export default function MusicWidget(){
-    const thumbRef = useRef()
+    const thumbRef = useRef<HTMLImageElement>(null)
     const [bgColor,setBgColor] = useState([147,151,153])
     const [playing,setPlaying] = useState<MusicState>({
         ...playList[0],
         status:false
     }) 
-    const playerRef = useRef<any>(null);
+    const playerRef = useRef<YouTubePlayer>(null);
     useEffect(()=>{
-        var colorThief = new ColorThief();
-        thumbRef.current.crossOrigin = 'Anonymous';
-        thumbRef.current?.addEventListener('load', function () {
-            var dominantColor = colorThief.getColor(thumbRef.current);
-            setBgColor(dominantColor); // 지배적인 색상 출력
-        });
-        
-    
+        if (thumbRef.current) {
+            const colorThief = new ColorThief();
+            thumbRef.current.crossOrigin = 'Anonymous';
+            thumbRef.current?.addEventListener('load', function () {
+                const dominantColor = colorThief.getColor(thumbRef.current);
+                setBgColor(dominantColor); // 지배적인 색상 출력
+            });
+        }
     },[thumbRef])
     
     const handleNext = () => {

@@ -1,9 +1,9 @@
-import styles from './VisitorCount.module.css'
+//import styles from './VisitorCount.module.css'
 
-const data={
+/*const data={
     today:29,
     total:2193
-}
+}*/
 export default function VisitorCount(){
     return(
         <>

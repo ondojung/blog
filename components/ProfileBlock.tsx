@@ -3,12 +3,19 @@ import Image from "next/image";
 import GithubIcon from '../public/img/github-mark.svg'
 import EmailIcon from '../public/img/email.svg'
 
+interface ProfileBlockProps {
+  name: string;
+  github: string;
+  email: string;
+  avatar: string;
+}
+
 export default function ProfileBlock({
     name,
     github,
     email,
     avatar,
-}){
+}:ProfileBlockProps){
     return( 
         <div className={styles.profileBlock}>
             <div className={styles.avatar}>
@@ -25,7 +32,7 @@ export default function ProfileBlock({
                     <GithubIcon width={98} height={96} className={styles.githubIcon}/>GithHub
                 </div>
                 </a>
-                <a href={`mailto:seohayeon.kr@gmail.com`}>
+                <a href={`mailto:${email}`}>
                 <div className={styles.button}>
                     <EmailIcon width={98} height={96} className={styles.emailIcon}/>Email
                 </div>
