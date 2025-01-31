@@ -1,17 +1,36 @@
 import styles from './PostListItem.module.css'
+import Image from "next/image";
+import Link from 'next/link'
+
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const dateHandler=(e)=>{
+    let month = months[e.getMonth()]
+    let date = e.getDate()
+    let year = e.getFullYear()
+    return `${month} ${date}, ${year}`
+}
 
 export default function PostListItem({
+    _id,
     title,
     overview,
     category,
-    img
+    img,
+    date
 }){
-    return( 
+    return(
+        <Link href={`/post/${_id}`}>
         <div className={styles.PostListBlock}>
-            <div></div>
-            <div className={styles.PostListCategory}>{category}</div>
-            <div className={styles.PostListTitle}>{title}</div>
-            <div className={styles.PostListOverview}>{overview}</div>
+            <div className={styles.PostListImgBlock}>
+                <img className={styles.PostListImg} src={img} alt={'썸네일'}/>
+            </div>
+            <div className={styles.PostListContent}>
+                <div className={styles.PostListCategory}>{category}</div>
+                <div className={styles.PostListTitle}>{title}</div>
+                <div className={styles.PostListOverview}>{overview}</div>
+                <div>{dateHandler(date)}</div>
+            </div>
         </div>
+        </Link>
     )
 }

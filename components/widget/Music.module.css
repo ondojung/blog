@@ -1,0 +1,56 @@
+.musicblock{
+    width: 100%;
+    background: gray;
+    aspect-ratio: 2/0.9;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.thumbImgBlock{
+    height: calc(100% - 1rem);
+    aspect-ratio: 1/1;
+    margin: 0.5rem 0 0.5rem 0.5rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    float: left;
+    overflow: hidden;
+}
+.musicTitle{
+    text-align: center;
+    color: white;
+    font-size: 1.1rem;
+    margin-top: 0.8rem;
+}
+.musicArtist{
+    text-align: center;
+    color: white;
+    font-size: 0.8rem;
+    color: rgba(256,256,256,0.7);
+}
+.musicContent{
+    padding: 0.5rem;
+    overflow: hidden;
+    text-align: center;
+}
+.controller{
+    background: pink;
+    position: relative;
+    margin-top: 0.5rem;
+}
+.prevIcon{
+    fill: white;
+    float: left;
+    transform: rotate(180deg);
+    font-size: 1.5rem;
+}
+.playIcon{
+    fill: white;
+    font-size: 1.5rem;
+    position: absolute;
+    transform:translate(-50%,0);
+    left: 50%;
+}
+.nextIcon{
+    fill: white;
+    font-size: 1.5rem;
+    float: right;
+}

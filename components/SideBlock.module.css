@@ -1,0 +1,64 @@
+.sideBlock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100vh;
+  background: white;
+  color: black;
+  padding: 20px;
+  z-index: 2;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  border-right: 1px solid #e2e2e2;
+}
+.sideBlock.open {
+  transform: translateX(0);  /* 메뉴가 열리면 원래 위치로 */
+}
+.sideblockBg{
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(20px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.blurImg{
+    width: 100vw;
+    height: 100vh;
+}
+.color{
+    width: 0.8rem;
+    height: 0.8rem;
+    background: red;
+    float: left;
+    border-radius: 50%;
+    margin: 0.2rem 0.5rem 0.2rem 0;
+}
+.category{
+    margin-top: 0.8rem;
+    display : flex;
+    align-items : center;
+}
+.avatarImg{
+    border-radius: 50%;
+}
+.closeMenu{
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+.closeMenuBg{
+    display: none;
+}
+.blogTitle{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+.sideMenuName{
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+    color: gray;
+}

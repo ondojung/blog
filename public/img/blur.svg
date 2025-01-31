@@ -1,0 +1,8 @@
+<svg class="blur-overlay" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="blur-effect">
+        <feGaussianBlur stdDeviation="10" />
+      </filter>
+    </defs>
+    <rect x="0" y="0" width="100%" height="100%" filter="url(#blur-effect)" fill="transparent" />
+</svg>

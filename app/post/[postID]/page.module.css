@@ -1,0 +1,15 @@
+.title, .content, .date{
+    margin-left:2rem;
+    margin-right:2rem;
+}
+.mainImgBlock{
+    width:100%;
+    aspect-ratio: 16 / 8;
+    position:relative;
+}
+.mainImg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
