@@ -1,19 +1,13 @@
-import React from "react";
+import {useEffect,useState} from "react";
 import Image from "next/image";
 import styles from './SideBlock.module.css'
 import VisitorCount from './widget/VisitorsCount'
 import MusicWidget from './widget/Music'
+import VisitorsCountWidget from './widget/VisitorsCount'
+import WhetherWidget from './widget/Whether'
+import { getCategoryList } from "@/app/actions";
 
-const category=[
-        {id:1,color:'red',name:'Swift'},
-        {id:2,color:'orange',name:'HTML'},
-        {id:3,color:'yellow',name:'Javascript'},
-        {id:4,color:'lime',name:'Shell'},
-        {id:5,color:'green',name:'Vue'},
-        {id:6,color:'skyblue',name:'React'},
-        {id:7,color:'blue',name:'Python'},
-        {id:8,color:'purple',name:'Kotlin'},
-    ]
+
 
 
 interface SideBlockProps {
@@ -25,6 +19,16 @@ export default function SideBlock({
     menuOpen,
     setMenuOpen
 }:SideBlockProps){
+    const [categoryList,setCategoryList] = useState([])
+    const fetch = async()=>{
+            const category = await getCategoryList()
+            setCategoryList(category)
+        }
+        
+    useEffect(()=>{
+        fetch()
+    },[])
+    
     return(
         <>
         <div className={menuOpen?styles.sideblockBg:styles.closeMenuBg} onClick={()=>setMenuOpen(false)}>
@@ -39,16 +43,15 @@ export default function SideBlock({
                        className={styles.avatarImg}/>
         </div>
         <div className={styles.blogTitle}>EVELIF&apos;s LOG</div>
-        
+        <VisitorsCountWidget/>
+        <WhetherWidget/>
         <MusicWidget/>
-        <VisitorCount/>
         
         <div className={styles.sideMenuName}>CATEGORY</div>
         <div>
                 {
-                    category.map(e=>
+                    categoryList.map(e=>
                         <div key={e.id} className={styles.category}>
-                            <div className={styles.color} style={{background:e.color}}></div>
                             <div className={styles.categoryName}>{e.name}</div>
                         </div>
                     )

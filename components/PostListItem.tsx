@@ -1,6 +1,5 @@
 import styles from './PostListItem.module.css'
 //import Image from "next/image";
-import Link from 'next/link'
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const dateHandler=(e:Date)=>{
@@ -26,8 +25,9 @@ export default function PostListItem({
     img,
     date
 }:PostProps){
+    
     return(
-        <Link href={`/post/${_id}`}>
+        <a target="_blank" href={`/post/${_id}`}>
         <div className={styles.PostListBlock}>
             <div className={styles.PostListImgBlock}>
                 <img className={styles.PostListImg} src={img} alt={'썸네일'}/>
@@ -39,6 +39,6 @@ export default function PostListItem({
                 <div>{dateHandler(date)}</div>
             </div>
         </div>
-        </Link>
+        </a>
     )
 }

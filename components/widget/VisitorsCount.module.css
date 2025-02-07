@@ -1,0 +1,43 @@
+.container{
+    width:calc(50% - 0.25rem);
+    aspect-ratio: 1/1;
+    background:#f7f7f7;
+    margin-bottom:0.5rem;
+    margin-right: 0.25rem;
+    border-radius:1.2rem;
+    float:left;
+    position:relative;
+    clear: both;
+}
+.day{
+    color: #FF3B30;
+    font-weight: 700;
+    margin-top: -0.5rem;
+}
+.date{
+    font-size: 2.3rem;
+    margin-top: -0.8rem;
+}
+.today{
+    font-size: 0.9rem;
+    background: #EAF6FC;
+    padding: 0.15rem;
+    margin-top: -0.2rem;
+    position: relative;
+    padding-left: 0.5rem;
+}
+.total{
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    background: #EFFDE9;
+    padding: 0.15rem;
+    position: relative;
+    padding-left: 0.5rem;
+}
+.label{
+    width: 0.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}

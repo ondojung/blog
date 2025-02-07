@@ -1,0 +1,65 @@
+.container{
+    width: 25rem;
+    background: #fdfdfd;
+    box-shadow:  5px 5px 10px #cecece,
+             -5px -5px 10px #f2f2f2;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: block;
+    margin:0 auto;
+    margin-top: 0.8rem;
+}
+.container span{
+    display: block;
+}
+.ogImageContainer{
+    position: relative;
+    width: 100%;
+    background: white;
+    aspect-ratio: 2/1;
+    overflow: hidden;
+    position: relative;
+}
+.ogImageContainer > img{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    outline: none;
+    border: none;
+    height: 100%;
+}
+.ogTitleContainer{
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ogDescriptContainer{
+    margin-top: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ogUrlContainer{
+    font-size: 0.9rem;
+    color: gray;
+    margin-top: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ogContent{
+    padding: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container{
+      background: #282828;
+      box-shadow:  5px 5px 10px #000,
+             -5px -5px 10px #000;
+  }
+  .ogImageContainer{
+      background: #282828;
+  }
+}
