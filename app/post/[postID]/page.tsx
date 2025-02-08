@@ -5,7 +5,9 @@ import rehypePrism from 'rehype-prism-plus';
 import 'prismjs/themes/prism-tomorrow.css';
 import OpenGraph from "@/components/OpenGraph"
 
-export default async function PostPage({ params }){
+
+
+export default async function PostPage({ params }:any){
     const { postID } = await params;
     const { title,createdAt,content,category,thumbnail } = await getPostDetail(Number(postID))
     const dateFormat=(data:Date)=>{
@@ -31,7 +33,7 @@ export default async function PostPage({ params }){
                 <ReactMarkdown
                     rehypePlugins={[rehypePrism]}
                     components={{
-        a: ({ node, children, ...props }) => {
+        a: ({ children, ...props }) => {
           const href = props.href || '';
           const text = children as string;
           

@@ -16,18 +16,18 @@ export default function Whether(){
         WeatherApi().then((result)=>{
             const trimData = {
                 city:'서울',
-                temperature:Math.floor(result?.main?.temp),
+                temperature:String(Math.floor(result?.main?.temp)),
                 weather:result?.weather[0]?.description,
                 icon:result?.weather[0]?.icon,
-                highest:Math.floor(result?.main?.temp_max),
-                lowest:Math.floor(result?.main?.temp_min)
+                highest:String(Math.floor(result?.main?.temp_max)),
+                lowest:String(Math.floor(result?.main?.temp_min))
             } 
             setData(trimData)
         })
     },[])
-    
+
     return(
-    <div styles={{background:WeatherIcon[data.icon]?.color}}
+    <div style={ data.icon ? { background: WeatherIcon[data.icon]?.color} : {}}
          className={styles.container}>
         <div style={{margin:'0.5rem'}}>
             <div className={styles.city}>{data?.city}</div>
@@ -35,7 +35,7 @@ export default function Whether(){
             
             <div style={{position: 'absolute',bottom: '0.5rem'}}>
             <div className={styles.weatherIconDiv}>
-                <img src={`/img/weather/${WeatherIcon[data.icon]?.path}.png`} className={styles.weatherIconImg}/>
+                <img src={data.icon ? `/img/weather/${WeatherIcon[data.icon]?.path}.png` : undefined} className={styles.weatherIconImg}/>
             </div>
             <div className={styles.weather}>{data?.weather}</div>
             <div style={{overflow:'hidden',fontSize:'0.8rem'}}>

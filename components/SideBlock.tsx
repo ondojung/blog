@@ -1,7 +1,6 @@
 import {useEffect,useState} from "react";
 import Image from "next/image";
 import styles from './SideBlock.module.css'
-import VisitorCount from './widget/VisitorsCount'
 import MusicWidget from './widget/Music'
 import VisitorsCountWidget from './widget/VisitorsCount'
 import WhetherWidget from './widget/Whether'
@@ -9,6 +8,10 @@ import { getCategoryList } from "@/app/actions";
 
 
 
+interface Category {
+  id: number;
+  name: string;
+}
 
 interface SideBlockProps {
   menuOpen: boolean;
@@ -19,7 +22,7 @@ export default function SideBlock({
     menuOpen,
     setMenuOpen
 }:SideBlockProps){
-    const [categoryList,setCategoryList] = useState([])
+    const [categoryList,setCategoryList] = useState<Category[]>([])
     const fetch = async()=>{
             const category = await getCategoryList()
             setCategoryList(category)

@@ -1,6 +1,6 @@
 "use client"
 import MenuIcon from '../public/img/menu.svg'
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import SideBlock from './SideBlock'
 
 export default function Header() {

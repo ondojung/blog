@@ -1,16 +1,16 @@
 import styles from "./OpenGraph.module.css"
 import { getOGData } from "@/app/actions";
 
-export default async function OpenGraphPreview({url}) {
-    const ogData = {
-        image:"https://hell",
-        title:"Hello World",
-        description:"안녕하세여"
-    };
+type OpenGraphPreviewProps = {
+  url: string;
+};
+
+export default async function OpenGraphPreview({ url }: OpenGraphPreviewProps) {
     const { ogImage,ogTitle,ogDescription } = await getOGData(url);
     
   return (
     <span className={styles.container}>
+        <a target="_blank" href={url}>
         <span className={styles.ogImageContainer}>
             <img src={ogImage}/>
         </span>
@@ -19,6 +19,7 @@ export default async function OpenGraphPreview({url}) {
             <span className={styles.ogDescriptContainer}>{ogDescription}</span>
             <span className={styles.ogUrlContainer}>{url}</span>
         </span>
+        </a>
     </span>
   );
 }

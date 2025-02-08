@@ -12,10 +12,7 @@ export class BaseModel {
         const sql = `INSERT INTO ${this.tableName} (${keys.join(", ")}) VALUES (${placeholders})`;
 
         const result = await db.query(sql, values);
-        return {
-            id: result.insertId,
-            ...data
-        } as T;
+        return true;
     }
 
     static async find < T extends BaseModel > (
@@ -56,14 +53,14 @@ export class BaseModel {
         const values = [...Object.values(data),
             ...Object.values(where)];
         const sql = `UPDATE ${this.tableName} SET ${updateFields} WHERE ${whereClause}`;
-        const [rows] = db.query(sql, values);
+        const [rows] = await db.query(sql, values);
         return rows;
     }
 
     static async delete < T extends BaseModel > (this: {
         new (): T; tableName: string
     }, where: Record < string, any >) {
-        return this.update(where, {
+        return BaseModel.update(where, {
             status: "DELETED", updatedAt: new Date()
         });
     }

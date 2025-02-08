@@ -8,7 +8,7 @@ const pool = mysql.createPool({
     charset: 'utf8mb4',
     multipleStatements: true,
     typeCast: function (field, next) {
-        if (field.type === "VAR_STRING" || field.type === "STRING" || field.type === "BLOB" || field.type === 'VARBINARY') {
+        if (field.type === "VAR_STRING" || field.type === "STRING" || field.type === "BLOB" ) {
             
             return field.buffer()?.toString('utf8');
         }
