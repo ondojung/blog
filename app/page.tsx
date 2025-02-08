@@ -1,21 +1,11 @@
 import PostListItem from '../components/PostListItem'
 import ProfileBlock from '../components/ProfileBlock'
-import MenuIcon from '../public/img/menu.svg'
 import Header from '../components/Header'
 import { getPosts } from "./actions";
 
-interface Post{
-    id:number;
-    title:string;
-    preview:string;
-    category:string;
-    thumbnail:string;
-    img:string;
-    createdAt:Date;
-}
 
 export default async function Home() {
-    const postList:any = await getPosts()
+    const postList = await getPosts()
 
     return (
     <div>
@@ -26,7 +16,7 @@ export default async function Home() {
                       avatar='/img/avatar.jpg'/>
         <div className='postListHeader'>Latest</div>
         {
-            postList.map((e:Post)=>
+            postList.map((e)=>
                 <PostListItem 
                       key={e.id}
                       _id={e.id}

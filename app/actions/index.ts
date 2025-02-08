@@ -1,7 +1,6 @@
 "use server";
 import db from "@/database";
 import ogs from "open-graph-scraper";
-import { FieldPacket } from "mysql2";
 
 const GET_POSTS_QUERY = `
 SELECT 
@@ -16,9 +15,19 @@ FROM posts p
 LEFT JOIN categories c1 ON p.categoryID = c1.id
 LEFT JOIN categories c2 ON c1.parent = c2.id;
 `
+interface Post{
+    id:number;
+    title:string;
+    thumbnail:string;
+    preview:string;
+    content:string;
+    createdAt:Date;
+    category:string;
+}
+
 export async function getPosts(){
-    const [rows] = await db.query(GET_POSTS_QUERY);
-    return rows;
+    const [rows]  = await db.query(GET_POSTS_QUERY);
+    return rows as Post[];
 }
 
 export async function getPostDetail(id:number){
@@ -34,10 +43,16 @@ export async function getPostDetail(id:number){
     LEFT JOIN categories c2 ON c1.parent = c2.id
     WHERE p.id=${id};
     `
-    const [rows]:[any[], FieldPacket[]] = await db.query(GET_POST_QUERY);
-    return rows[0];
+    const [rows] = await db.query(GET_POST_QUERY);
+    return (rows as Post[])[0];
 }
 
+interface Category{
+    id:number;
+    name:string;
+    parent:number;
+    children:Category;
+}
 export async function getCategoryList(){
     const GET_CATEGORY_QUERY = `
     SELECT 
@@ -53,10 +68,11 @@ export async function getCategoryList(){
     WHERE p.parent IS NULL
     GROUP BY p.id, p.name;
     `
-    const [rows]:[any[], FieldPacket[]] = await db.query(GET_CATEGORY_QUERY);
-    const result = rows.map(e => ({ ...e, children: JSON.parse(e.children?.toString('utf-8'))}))
+    const [rows] = await db.query(GET_CATEGORY_QUERY);
     
-    return result;
+    const result = (rows as Category[]).map(e => ({ ...e, children: JSON.parse(e.children?.toString())}))
+    
+    return result; 
 }
 
 export async function getOGData(url:string){

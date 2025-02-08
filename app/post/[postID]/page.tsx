@@ -5,9 +5,11 @@ import rehypePrism from 'rehype-prism-plus';
 import 'prismjs/themes/prism-tomorrow.css';
 import OpenGraph from "@/components/OpenGraph"
 
+interface PostParams {
+  postID: string;
+}
 
-
-export default async function PostPage({ params }:any){
+export default async function PostPage({ params }:{ params: Promise<PostParams> }){
     const { postID } = await params;
     const { title,createdAt,content,category,thumbnail } = await getPostDetail(Number(postID))
     const dateFormat=(data:Date)=>{
