@@ -27,7 +27,6 @@ export async function getPosts() {
       createdAt: 'desc',
     },
   }).then(posts => {
-      console.log(posts)
     return posts.map(post => ({
       ...post,
       category: post.category?.parent

@@ -1,12 +1,20 @@
+"use client"
+import { useState, useEffect } from "react";
 import PostListItem from '../components/PostListItem'
 import ProfileBlock from '../components/ProfileBlock'
 import Header from '../components/Header'
-import { getPosts } from "./actions";
+import axios from "axios";
 
+export default function Home() {
+    const [data, setData] = useState([]);
 
-export default async function Home() {
-    const postList = await getPosts()
-
+    useEffect(() => {
+        axios.get("/api/posts") // API 라우트 호출
+        .then((res) => {
+            setData(res.data)
+            alert(res.data)
+        })
+    }, []);
     return (
     <div>
         <Header/>
@@ -16,7 +24,7 @@ export default async function Home() {
                       avatar='/img/avatar.jpg'/>
         <div className='postListHeader'>Latest</div>
         {
-            postList.map((e)=>
+            data.map((e)=>
                 <PostListItem 
                       key={e.id}
                       _id={e.id}

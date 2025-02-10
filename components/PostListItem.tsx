@@ -36,7 +36,7 @@ export default function PostListItem({
                 <div className={styles.PostListCategory}>{category}</div>
                 <div className={styles.PostListTitle}>{title}</div>
                 <div className={styles.PostListOverview}>{overview}</div>
-                <div>{dateHandler(date)}</div>
+                <div>{dateHandler(new Date(date))}</div>
             </div>
         </div>
         </a>
