@@ -31,7 +31,7 @@ export async function getPosts() {
     return posts.map(post => ({
       ...post,
       category: post.category?.parent
-        ? `${post.category.parentCategory.name} / ${post.category.name}`
+        ? `${post.category.parentCategory?.name} / ${post.category.name}`
         : post.category?.name,
     }));
   });
