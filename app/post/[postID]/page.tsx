@@ -12,17 +12,22 @@ interface PostParams {
 export default async function PostPage({ params }:{ params: Promise<PostParams> }){
     const { postID } = await params;
     const { title,createdAt,content,category,thumbnail } = await getPostDetail(Number(postID))
-    const dateFormat=(data:Date)=>{
-        const year = data.getFullYear()
-        const date = data.getDate()
-        const month = data.toLocaleString('en-US', { month: 'short' });
-
-        return `${month} ${date}, ${year}`
+    const dateFormat=(data:Date | undefined)=>{
+        if(data){
+            const year = data.getFullYear()
+            const date = data.getDate()
+            const month = data.toLocaleString('en-US', { month: 'short' });
+    
+            return `${month} ${date}, ${year}`
+        }
     }
     return(
         <>
             <div className={styles.mainImgBlock}>
+                {thumbnail?
                 <img className={styles.thumbnail} src={thumbnail} alt={'썸네일'}/>
+                :null
+                }
                 <div className={styles.thumbnailContent}>
                     <div className={styles.title}>{title}</div>
                     <span className={styles.category}>{category}</span>

@@ -49,15 +49,20 @@ export async function getPostDetail(id: number) {
         select: {
           name: true,
           parent: true,
-        },
+          parentCategory: {  // 부모 카테고리 추가
+            select: {
+              name: true,  // 부모 카테고리의 이름 가져오기
+            },
+          },
+        }
       },
     },
   }).then(post => ({
-    ...post,
-    category: post.category?.parent
-      ? `${post.category.parent.name} / ${post.category.name}`
-      : post.category?.name,
-  }));
+      ...post,
+      category: post?.category.parent
+        ? `${post?.category.parentCategory?.name} / ${post?.category.name}`
+        : post?.category?.name,
+    }));
 }
 
 export async function getCategoryList() {

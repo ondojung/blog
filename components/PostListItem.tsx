@@ -11,9 +11,9 @@ const dateHandler=(e:Date)=>{
 interface PostProps {
   _id: number;
   title: string;
-  overview: string;
+  overview: string | null;
   category: string;
-  img: string;
+  img: string | null;
   date: Date;
 }
 
@@ -29,9 +29,9 @@ export default function PostListItem({
     return(
         <a target="_blank" href={`/post/${_id}`}>
         <div className={styles.PostListBlock}>
-            <div className={styles.PostListImgBlock}>
+            {img?<div className={styles.PostListImgBlock}>
                 <img className={styles.PostListImg} src={img} alt={'썸네일'}/>
-            </div>
+            </div>:null}
             <div className={styles.PostListContent}>
                 <div className={styles.PostListCategory}>{category}</div>
                 <div className={styles.PostListTitle}>{title}</div>
