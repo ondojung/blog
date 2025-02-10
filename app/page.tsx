@@ -5,6 +5,15 @@ import ProfileBlock from '../components/ProfileBlock'
 import Header from '../components/Header'
 import axios from "axios";
 
+interface IPost{
+    id:number;
+    title:string;
+    preview:string;
+    categoryID:number;
+    thumbnail:string;
+    createdAt:Date;
+    category:string;
+}
 export default function Home() {
     const [data, setData] = useState([]);
 
@@ -12,7 +21,6 @@ export default function Home() {
         axios.get("/api/posts") // API 라우트 호출
         .then((res) => {
             setData(res.data)
-            alert(res.data)
         })
     }, []);
     return (
@@ -24,7 +32,7 @@ export default function Home() {
                       avatar='/img/avatar.jpg'/>
         <div className='postListHeader'>Latest</div>
         {
-            data.map((e)=>
+            data.map((e:IPost)=>
                 <PostListItem 
                       key={e.id}
                       _id={e.id}
