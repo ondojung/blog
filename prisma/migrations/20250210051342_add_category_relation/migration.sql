@@ -1,0 +1,2 @@
+-- AddForeignKey
+ALTER TABLE "Post" ADD CONSTRAINT "Post_categoryID_fkey" FOREIGN KEY ("categoryID") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

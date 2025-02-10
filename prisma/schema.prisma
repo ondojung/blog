@@ -11,4 +11,35 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String
+  preview    String?  // NULL 허용
+  thumbnail  String?  // NULL 허용
+  categoryID Int
+  category   Category @relation("PostCategory",fields: [categoryID], references: [id])  // 관계 추가
+  status     Status   @default(DRAFT)
+  createdAt  DateTime @default(now()) @db.Timestamp(3)
+  updatedAt  DateTime @default(now()) @updatedAt @db.Timestamp(3)
+  deletedAt  DateTime? @db.Timestamp(3) // NULL 허용
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+  PRIVATE
+}
+
+model Category {
+  id             Int        @id @default(autoincrement())
+  name           String
+  parent         Int?       // NULL 허용
+  parentCategory Category?  @relation("CategoryParent", fields: [parent], references: [id])
+  children       Category[] @relation("CategoryParent")  // 자식 카테고리들을 참조
+  posts          Post[]     @relation("PostCategory") // 추가된 관계
 }
